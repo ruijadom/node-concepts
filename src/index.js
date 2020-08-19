@@ -1,9 +1,14 @@
 const express = require("express");
+const cors = require('cors');
 const { uuid, isUuid } = require('uuidv4');
+
 
 const app = express();
 
 app.use(logRequests);
+
+
+app.use(cors());
 app.use(express.json());
 
 app.use('/projects/:id', validadeProjectId);
@@ -72,6 +77,9 @@ app.put("/projects/:id", (request, response) => {
     title,
     owner,
   };
+
+  console.log(`project ${JSON.stringify(project)}`);
+  
 
   projects[projectIndex] = project;
 
